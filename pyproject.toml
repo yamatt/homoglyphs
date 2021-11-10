@@ -7,15 +7,11 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "homoglyphs-fork"
+name = "homoglyphs_fork"
 authors = [{name = "orsinium", email = "master_fess@mail.ru"}]
 maintainers = [{name = "Matt Copperwaite", email = "matt@copperwaite.net"}]
-license = "MIT"
+license = {text = "MIT"}
 readme = "README.md"
-homepage = "https://github.com/yamatt/homoglyphs"
-packages = [
-    { include = "homoglyphs" }
-]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
