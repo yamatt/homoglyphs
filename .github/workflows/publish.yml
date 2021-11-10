@@ -11,6 +11,8 @@ jobs:
   publish:
       name: Publish to PyPI
       runs-on: ubuntu-latest
+      env:
+        FLIT_USERNAME: __token__
       steps:
         - uses: actions/checkout@v2
         - name: Get tag
@@ -24,7 +26,6 @@ jobs:
           run: |
             TAG="${{steps.tag.outputs.tag}}"
             echo "__version__ = \"${TAG:1}\"" | tee ${{ env.name }}/__init__.py
-            python3 -m pip install setuptools==50.1.0 twine==3.2.0 wheel==0.35.1
-            python3 setup.py sdist
-            python3 -m twine check dist/*
-            python3 -m twine upload -u "__token__" -p "${{ secrets.PYPI_API }}" dist/*
+            python3 -m pip install setuptools==50.1.0 twine==3.2.0 wheel==0.35.1 flit==3.4.0
+            python3 -m flit build
+            python3 -m flit publish
