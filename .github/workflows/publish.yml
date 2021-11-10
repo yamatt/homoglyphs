@@ -1,0 +1,30 @@
+name: Publish Homoglyphs
+
+env:
+  name: hemoglobin
+
+on:
+  push:
+    tags: v*
+
+jobs:
+  publish:
+      name: Publish to PyPI
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Get tag
+          id: tag
+          uses: dawidd6/action-get-tag@v1
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: "3.8"
+        - name: Publish to PyPI
+          run: |
+            TAG="${{steps.tag.outputs.tag}}"
+            echo "__version__ = \"${TAG:1}\"" | tee hemoglobin/__init__.py
+            python3 -m pip install setuptools==50.1.0 twine==3.2.0 wheel==0.35.1
+            python3 setup.py sdist
+            python3 -m twine check dist/*
+            python3 -m twine upload -u "__token__" -p "${{ secrets.PYPI_API }}" dist/*
