@@ -1,7 +1,7 @@
 name: Publish Homoglyphs
 
 env:
-  name: homoglyphs
+  name: homoglyphs_fork
 
 on:
   push:
