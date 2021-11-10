@@ -22,7 +22,7 @@ It's smarter version of [confusable_homoglyphs](https://github.com/vhf/confusabl
 ## Installation
 
 ```bash
-sudo pip install homoglyphs
+sudo pip install homoglyphs_fork
 ```
 
 
@@ -33,7 +33,7 @@ Best way to explain something is show how it works. So, let's have a look on the
 Importing:
 
 ```python
-import homoglyphs as hg
+import homoglyphs_fork as hg
 ```
 
 ### Languages
