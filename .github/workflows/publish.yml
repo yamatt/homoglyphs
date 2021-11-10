@@ -15,6 +15,8 @@ jobs:
         FLIT_USERNAME: __token__
       steps:
         - uses: actions/checkout@v2
+        - name: Install CA certs
+          run: sudo apt-get install ca-certificates -y
         - name: Get tag
           id: tag
           uses: dawidd6/action-get-tag@v1
