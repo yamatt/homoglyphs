@@ -1,7 +1,7 @@
 name: Publish Homoglyphs
 
 env:
-  name: hemoglobin
+  name: homoglyphs
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         - name: Publish to PyPI
           run: |
             TAG="${{steps.tag.outputs.tag}}"
-            echo "__version__ = \"${TAG:1}\"" | tee hemoglobin/__init__.py
+            echo "__version__ = \"${TAG:1}\"" | tee ${{ env.name }}/__init__.py
             python3 -m pip install setuptools==50.1.0 twine==3.2.0 wheel==0.35.1
             python3 setup.py sdist
             python3 -m twine check dist/*
