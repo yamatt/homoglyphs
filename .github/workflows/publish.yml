@@ -28,6 +28,6 @@ jobs:
           run: |
             TAG="${{steps.tag.outputs.tag}}"
             echo "__version__ = \"${TAG:1}\"" >> ${{ env.name }}/__init__.py
-            python3 -m pip install setuptools==50.1.0 twine==3.2.0 wheel==0.35.1 flit==3.4.0
+            python3 -m pip install setuptools==58.5.3 twine==3.6.0 wheel==0.35.1 flit==3.4.0 keyring==23.2.1 
             python3 -m flit build
             python3 -m flit publish
