@@ -14,10 +14,6 @@ __author__ = 'Gram Orsinium'
 __license__ = 'MIT'
 
 
-# version synonym
-VERSION = __version__
-
-
 from .core import ( # noQA
     Categories, Languages, Homoglyphs,
     STRATEGY_LOAD, STRATEGY_IGNORE, STRATEGY_REMOVE
