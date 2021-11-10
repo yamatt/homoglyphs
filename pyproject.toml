@@ -2,15 +2,15 @@
 from = {format = "flit", path = "pyproject.toml"}
 to = {format = "setuppy", path = "setup.py"}
 
-[tool.flit.metadata]
-module = "homoglyphs-fork"
-author = "orsinium"
-author-email = "master_fess@mail.ru"
-home-page="https://github.com/yamatt/homoglyphs"
-license = "MIT"
-requires-python=">=3.5"
-description-file="README.md"
-classifiers=[
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "homoglyphs-fork"
+authors = [{name = "orsinium", email = "master_fess@mail.ru"}, {name = "Matt Copperwaite", email = "matt@copperwaite.net"}]
+readme = "README.md"
+classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -24,3 +24,7 @@ classifiers=[
     "Programming Language :: Python",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+dynamic = ["version", "description"]
+
+[project.urls]
+Home = "https://github.com/yamatt/homoglyphs"
