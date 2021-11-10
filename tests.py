@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from homoglyphs import (
+from homoglyphs_fork import (
     Categories, Languages, Homoglyphs,
     STRATEGY_LOAD, STRATEGY_IGNORE, STRATEGY_REMOVE
 )
