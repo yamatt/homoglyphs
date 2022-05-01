@@ -9,9 +9,14 @@ from collections import defaultdict
 from urllib.request import urlopen
 import json
 from pathlib import Path
+import sys
 
+try:
+    homoglyphs_dir = sys.argv[1]
+except:
+    homoglyphs_dir = "homoglyphs"
 
-path = Path('homoglyphs')
+path = Path(homoglyphs_dir)
 
 
 def generate_categories():
