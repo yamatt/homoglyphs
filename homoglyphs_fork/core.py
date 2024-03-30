@@ -64,8 +64,8 @@ class Categories:
         # try detect category by unicodedata
         try:
             category = unicodedata.name(char).split()[0]
-        except TypeError:
-            # In Python2 unicodedata.name raise error for non-unicode chars
+        except ValueError:
+            # unicodedata.name raises error for non-unicode chars
             pass
         else:
             if category in data['aliases']:
