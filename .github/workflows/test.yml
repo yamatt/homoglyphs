@@ -8,7 +8,7 @@ on: push
 jobs:
   lint:
     name: Run some linting
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
