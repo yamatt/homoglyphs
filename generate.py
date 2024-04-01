@@ -13,7 +13,7 @@ import sys
 
 try:
     homoglyphs_dir = sys.argv[1]
-except:
+except IndexError:
     homoglyphs_dir = "homoglyphs"
 
 path = Path(homoglyphs_dir)
