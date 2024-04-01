@@ -7,17 +7,17 @@ on:
 jobs:
     generate:
       name: Generate the confusables
-      runs-on: ubuntu-20.04
+      runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v2
-        - name: Set up Python 3
-          uses: actions/setup-python@v2
+        - uses: actions/checkout@v4
+        - name: Set up Python
+          uses: actions/setup-python@v5
           with:
-            python-version: "3.9"
+            python-version: '3.12'
         - name: Generate confusables
           run: python3 generate.py homoglyphs_fork
         - name: Create Pull Request for changes
-          uses: peter-evans/create-pull-request@v3
+          uses: peter-evans/create-pull-request@v6
           with:
             commit-message: "Latest confusables"
             title: "Latest confusables"
