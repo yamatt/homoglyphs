@@ -108,7 +108,7 @@ class Languages:
         :return: set of languages which alphabet contains passed char.
         :rtype: set
         """
-        with open(cls.fpath) as f:
+        with open(cls.fpath, encoding='utf-8') as f:
             data = json.load(f)
         languages = set()
         for lang, alphabet in data.items():
