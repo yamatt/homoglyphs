@@ -26,7 +26,7 @@ jobs:
         run: |
           rye sync
           # stop the build if there are Python syntax errors or undefined names
-          rye run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          rye run lint
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           rye run flake8 . --count --max-line-length=127 --statistics
   test:
