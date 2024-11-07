@@ -3,28 +3,25 @@
 Homoglyphs lives! This Python library is an important and [widely used](https://github.com/life4/homoglyphs/network/dependents) library for handling [Homoglyphs](https://en.wikipedia.org/wiki/Homoglyph) in Python. This is a fork of the original [orsinium](https://github.com/orsinium/forks) maintained [project](https://github.com/life4/homoglyphs).
 
 ![Homoglyphs logo](logo.png)
-[![Build Status](https://travis-ci.org/orsinium/homoglyphs.svg?branch=master)](https://travis-ci.org/orsinium/homoglyphs) [![PyPI version](https://img.shields.io/pypi/v/homoglyphs.svg)](https://pypi.python.org/pypi/homoglyphs) [![Status](https://img.shields.io/pypi/status/homoglyphs.svg)](https://pypi.python.org/pypi/homoglyphs) [![Code size](https://img.shields.io/github/languages/code-size/orsinium/homoglyphs.svg)](https://github.com/orsinium/homoglyphs) [![License](https://img.shields.io/pypi/l/homoglyphs.svg)](LICENSE)
+[![Test Homoglyphs](https://github.com/yamatt/homoglyphs/actions/workflows/test.yml/badge.svg)](https://github.com/yamatt/homoglyphs/actions/workflows/test.yml) [![PyPI version](https://img.shields.io/pypi/v/homoglyphs_fork.svg)](https://pypi.python.org/pypi/homoglyphs_fork) [![Status](https://img.shields.io/pypi/status/homoglyphs_fork.svg)](https://pypi.python.org/pypi/homoglyphs_fork) [![Code size](https://img.shields.io/github/languages/code-size/yamatt/homoglyphs.svg)](https://github.com/yamatt/homoglyphs) [![License](https://img.shields.io/pypi/l/homoglyphs_fork.svg)](LICENSE)
 
 Homoglyphs -- python library for getting [homoglyphs](https://en.wikipedia.org/wiki/Homoglyph) and converting to ASCII.
-
 
 ## Features
 
 It's smarter version of [confusable_homoglyphs](https://github.com/vhf/confusable_homoglyphs):
 
-* Autodect or manual choosing category ([aliases from ISO 15924](https://en.wikipedia.org/wiki/ISO_15924#List_of_codes)).
-* Auto or manual load only needed alphabets in memory.
-* Converting to ASCII.
-* More configurable.
-* More stable.
-
+-   Autodect or manual choosing category ([aliases from ISO 15924](https://en.wikipedia.org/wiki/ISO_15924#List_of_codes)).
+-   Auto or manual load only needed alphabets in memory.
+-   Converting to ASCII.
+-   More configurable.
+-   More stable.
 
 ## Installation
 
 ```bash
 sudo pip install homoglyphs_fork
 ```
-
 
 ## Usage
 
@@ -116,10 +113,9 @@ homoglyphs.get_combinations('гы')
 
 You can combine `categories`, `languages`, `alphabet` and any strategies as you want. The strategies specify how to handle any characters not already loaded:
 
-* `STRATEGY_LOAD`: load category for this character
-* `STRATEGY_IGNORE`: add character to result
-* `STRATEGY_REMOVE`: remove character from result
-
+-   `STRATEGY_LOAD`: load category for this character
+-   `STRATEGY_IGNORE`: add character to result
+-   `STRATEGY_REMOVE`: remove character from result
 
 ### Converting glyphs to ASCII chars
 
@@ -158,14 +154,17 @@ homoglyphs.to_ascii('хр123.')
 # ['xpl']
 ```
 
-
 ## The Fork
 
 To help with the transition I have:
-* Moved the `main` branch
-* Enabled Issues
+
+-   Moved the `main` branch
+-   Enabled Issues
 
 I am looking to:
-* Switch to using GitHub Actions
-* Add this fork to PyPI
-* Update [orsinium's page](https://github.com/orsinium/forks) to say it's maintained
+
+## Contributors
+
+With thanks to:
+
+-   @wesinator
