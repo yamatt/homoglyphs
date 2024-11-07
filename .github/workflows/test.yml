@@ -14,10 +14,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
       - uses: eifinger/setup-rye@v4
       - name: Lint
-        run:  |
+        run: |
           rye sync
           # stop the build if there are Python syntax errors or undefined names
           rye run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -30,7 +30,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
