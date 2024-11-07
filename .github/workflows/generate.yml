@@ -21,7 +21,7 @@ jobs:
         - name: Generate confusables
           run: python3 generate.py homoglyphs_fork
         - name: Create Pull Request for changes
-          uses: peter-evans/create-pull-request@v6
+          uses: peter-evans/create-pull-request@v7
           with:
             commit-message: "Latest confusables"
             title: "Latest confusables"
