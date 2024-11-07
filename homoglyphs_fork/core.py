@@ -127,6 +127,10 @@ class Homoglyphs:
     def __init__(self, categories=None, languages=None, alphabet=None,
                  strategy=STRATEGY_IGNORE, ascii_strategy=STRATEGY_IGNORE,
                  ascii_range=ASCII_RANGE):
+        """
+        :param ascii_strategy: action to take on unmatched char when converting to ascii
+        :type ascii_strategy: int
+        """
         # strategies
         if strategy not in (STRATEGY_LOAD, STRATEGY_IGNORE, STRATEGY_REMOVE):
             raise ValueError('Invalid strategy')
@@ -220,7 +224,7 @@ class Homoglyphs:
             if ascii:
                 alt_chars = [char for char in alt_chars if ord(char) in self.ascii_range]
                 if not alt_chars and self.ascii_strategy == STRATEGY_IGNORE:
-                    return
+                    alt_chars.append(char)
 
             if alt_chars:
                 variations.append(alt_chars)
@@ -233,8 +237,7 @@ class Homoglyphs:
 
     def _to_ascii(self, text):
         for variant in self._get_combinations(text, ascii=True):
-            if max(map(ord, variant)) in self.ascii_range:
-                yield variant
+            yield variant
 
     def to_ascii(self, text):
         return self.uniq_and_sort(self._to_ascii(text))

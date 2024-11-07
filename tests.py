@@ -112,7 +112,7 @@ class TestCommon(unittest.TestCase):
             categories=('LATIN', 'COMMON', 'CYRILLIC'),
             ascii_strategy=STRATEGY_IGNORE,
         ).to_ascii(u'xхч2')
-        self.assertEqual(ss, [])
+        self.assertEqual(ss, [u'xxч2'])
 
         ss = Homoglyphs(
             categories=('LATIN', 'COMMON', 'CYRILLIC'),
@@ -126,6 +126,11 @@ class TestCommon(unittest.TestCase):
             ascii_strategy=STRATEGY_REMOVE,
         ).to_ascii(u'ч')
         self.assertEqual(ss, [])
+
+        # this test is based on https://github.com/yamatt/homoglyphs/issues/4
+        ss = Homoglyphs(ascii_strategy=STRATEGY_IGNORE).to_ascii('ß')
+        self.assertEqual(ss, ['ß'])
+
 
         # # This char hasn't been added yet :/
         # ss = Homoglyphs(
