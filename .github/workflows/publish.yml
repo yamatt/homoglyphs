@@ -9,25 +9,24 @@ on:
 
 jobs:
   publish:
-      name: Publish to PyPI
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        - name: Install CA certs
-          run: sudo apt-get install ca-certificates -y
-        - name: Get tag
-          id: tag
-          uses: dawidd6/action-get-tag@v1
-        - name: Set up Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: "3.8"
-        - name: Publish to PyPI
-          run: |
-            TAG="${{steps.tag.outputs.tag}}"
-            echo "__version__ = \"${TAG:1}\"" >> ${{ env.name }}/__init__.py
-            python3 -m pip install setuptools==58.5.3 twine==3.6.0 wheel==0.35.1 flit==3.4.0
-            python3 -m flit publish
-          env:
-            FLIT_USERNAME: __token__
-            FLIT_PASSWORD: ${{ secrets.PYPI_API }}
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install CA certs
+        run: sudo apt-get install ca-certificates -y
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: eifinger/setup-rye@v4
+      - name: Publish to PyPI
+        run: |
+          rye build
+          rye publish --yes
+        env:
+          FLIT_USERNAME: __token__
+          FLIT_PASSWORD: ${{ secrets.PYPI_API }}
