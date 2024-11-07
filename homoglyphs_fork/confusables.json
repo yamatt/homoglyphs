@@ -30,6 +30,9 @@
   "\"": [
     "''"
   ],
+  "$\u20e0": [
+    "\ud83c\udd0f"
+  ],
   "%": [
     "\u00ba/\u2080"
   ],
@@ -704,7 +707,8 @@
     "\ud835\udfda",
     "\ud835\udfe4",
     "\ud835\udfee",
-    "\ud835\udff8"
+    "\ud835\udff8",
+    "\ud83e\udff2"
   ],
   "2,": [
     "\ud83c\udd03"
@@ -787,7 +791,8 @@
     "\ud835\udfdb",
     "\ud835\udfe5",
     "\ud835\udfef",
-    "\ud835\udff9"
+    "\ud835\udff9",
+    "\ud83e\udff3"
   ],
   "3,": [
     "\ud83c\udd04"
@@ -820,7 +825,8 @@
     "\ud835\udfdc",
     "\ud835\udfe6",
     "\ud835\udff0",
-    "\ud835\udffa"
+    "\ud835\udffa",
+    "\ud83e\udff4"
   ],
   "4,": [
     "\ud83c\udd05"
@@ -847,7 +853,8 @@
     "\ud835\udfdd",
     "\ud835\udfe7",
     "\ud835\udff1",
-    "\ud835\udffb"
+    "\ud835\udffb",
+    "\ud83e\udff5"
   ],
   "5,": [
     "\ud83c\udd06"
@@ -873,7 +880,8 @@
     "\ud835\udfde",
     "\ud835\udfe8",
     "\ud835\udff2",
-    "\ud835\udffc"
+    "\ud835\udffc",
+    "\ud83e\udff6"
   ],
   "6,": [
     "\ud83c\udd07"
@@ -898,7 +906,8 @@
     "\ud835\udfdf",
     "\ud835\udfe9",
     "\ud835\udff3",
-    "\ud835\udffd"
+    "\ud835\udffd",
+    "\ud83e\udff7"
   ],
   "7,": [
     "\ud83c\udd08"
@@ -927,7 +936,8 @@
     "\ud835\udfe0",
     "\ud835\udfea",
     "\ud835\udff4",
-    "\ud835\udffe"
+    "\ud835\udffe",
+    "\ud83e\udff8"
   ],
   "8,": [
     "\ud83c\udd09"
@@ -958,7 +968,8 @@
     "\ud835\udfe1",
     "\ud835\udfeb",
     "\ud835\udff5",
-    "\ud835\udfff"
+    "\ud835\udfff",
+    "\ud83e\udff9"
   ],
   "9,": [
     "\ud83c\udd0a"
@@ -1205,6 +1216,9 @@
   "C\u0326": [
     "\u00c7",
     "\u04aa"
+  ],
+  "C\u20e0": [
+    "\ud83c\udd6e"
   ],
   "C\u20eb": [
     "\u20a1"
@@ -1606,7 +1620,8 @@
     "\ud835\udfd8",
     "\ud835\udfe2",
     "\ud835\udfec",
-    "\ud835\udff6"
+    "\ud835\udff6",
+    "\ud83e\udff0"
   ],
   "O'": [
     "\u01a0",
@@ -2586,7 +2601,8 @@
     "\ud835\udfd9",
     "\ud835\udfe3",
     "\ud835\udfed",
-    "\ud835\udff7"
+    "\ud835\udff7",
+    "\ud83e\udff1"
   ],
   "l'": [
     "\u200e\u05f1\u200e"
@@ -16293,6 +16309,9 @@
   "\u21b5": [
     "\u21b2"
   ],
+  "\u21ba": [
+    "\ud83c\udd0e"
+  ],
   "\u21be": [
     "\u16da"
   ],
@@ -17017,6 +17036,9 @@
   ],
   "\u24db": [
     "\u24be"
+  ],
+  "\u24ea": [
+    "\ud83c\udd0d"
   ],
   "\u2500": [
     "\u30fc"
@@ -29652,6 +29674,15 @@
   "\ud83c\udd0a": [
     "9,"
   ],
+  "\ud83c\udd0d": [
+    "\u24ea"
+  ],
+  "\ud83c\udd0e": [
+    "\u21ba"
+  ],
+  "\ud83c\udd0f": [
+    "$\u20e0"
+  ],
   "\ud83c\udd10": [
     "(A)"
   ],
@@ -29732,6 +29763,9 @@
   ],
   "\ud83c\udd2a": [
     "(S)"
+  ],
+  "\ud83c\udd6e": [
+    "C\u20e0"
   ],
   "\ud83c\ude40": [
     "(\u672c)"
@@ -29825,6 +29859,36 @@
   ],
   "\ud83d\udf71": [
     "\u22a0"
+  ],
+  "\ud83e\udff0": [
+    "O"
+  ],
+  "\ud83e\udff1": [
+    "l"
+  ],
+  "\ud83e\udff2": [
+    "2"
+  ],
+  "\ud83e\udff3": [
+    "3"
+  ],
+  "\ud83e\udff4": [
+    "4"
+  ],
+  "\ud83e\udff5": [
+    "5"
+  ],
+  "\ud83e\udff6": [
+    "6"
+  ],
+  "\ud83e\udff7": [
+    "7"
+  ],
+  "\ud83e\udff8": [
+    "8"
+  ],
+  "\ud83e\udff9": [
+    "9"
   ],
   "\ud840\udd22": [
     "\ud87e\udc03"
