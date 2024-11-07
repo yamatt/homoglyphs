@@ -3,7 +3,13 @@ name: Test Homoglyphs
 env:
   name: homoglyphs
 
-on: push
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - homoglyphs_fork/**
+      - .github/workflows/test.yml
 
 jobs:
   lint:
