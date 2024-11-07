@@ -125,7 +125,7 @@ class Languages:
 
 class Homoglyphs:
     def __init__(self, categories=None, languages=None, alphabet=None,
-                 strategy=STRATEGY_IGNORE, ascii_strategy=STRATEGY_IGNORE,
+                 strategy=STRATEGY_IGNORE, ascii_strategy=STRATEGY_REMOVE,
                  ascii_range=ASCII_RANGE):
         """
         :param ascii_strategy: action to take on unmatched char when converting to ascii

@@ -127,7 +127,10 @@ class TestCommon(unittest.TestCase):
         ).to_ascii(u'ч')
         self.assertEqual(ss, [])
 
-        # this test is based on https://github.com/yamatt/homoglyphs/issues/4
+        # these tests are based on https://github.com/yamatt/homoglyphs/issues/4
+        ss = Homoglyphs().to_ascii('ß')
+        self.assertEqual(ss, [])
+
         ss = Homoglyphs(ascii_strategy=STRATEGY_IGNORE).to_ascii('ß')
         self.assertEqual(ss, ['ß'])
 
