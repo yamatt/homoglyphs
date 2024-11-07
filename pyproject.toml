@@ -18,6 +18,7 @@ classifiers = [
     "Programming Language :: Python",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+dynamic = ["description"]
 
 [project.urls]
 Home = "https://github.com/yamatt/homoglyphs"
