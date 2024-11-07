@@ -26,8 +26,10 @@ build-backend = "flit_core.buildapi"
 
 [tool.rye]
 dev-dependencies = ["flake8>=7.0.0"]
+
 [tool.rye.scripts]
 lint = "flake8 . --count --show-source --statistics"
+generate = "python generate.py homoglyphs_fork"
 
 [tool.dephell.main]
 from = {format = "flit", path = "pyproject.toml"}

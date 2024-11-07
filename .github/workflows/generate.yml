@@ -9,20 +9,18 @@ permissions:
   pull-requests: write
 
 jobs:
-    generate:
-      name: Generate the confusables
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        - name: Set up Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.12'
-        - name: Generate confusables
-          run: python3 generate.py homoglyphs_fork
-        - name: Create Pull Request for changes
-          uses: peter-evans/create-pull-request@v7
-          with:
-            commit-message: "Latest confusables"
-            title: "Latest confusables"
-            body: "Automatically generated"
+  generate:
+    name: Generate the confusables
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: eifinger/setup-rye@v4
+      - name: Generate confusables
+        run: |
+          rye run generate
+      - name: Create Pull Request for changes
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Latest confusables"
+          title: "Latest confusables"
+          body: "Automatically generated"
