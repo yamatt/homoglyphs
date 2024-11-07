@@ -1,5 +1,6 @@
 [project]
 name = "homoglyphs_fork"
+version = "2.1.0"
 authors = [{name = "orsinium", email = "master_fess@mail.ru"}]
 maintainers = [{name = "Matt Copperwaite", email = "matt@copperwaite.net"}]
 license = {text = "MIT"}
@@ -17,7 +18,6 @@ classifiers = [
     "Programming Language :: Python",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dynamic = ["version", "description"]
 
 [project.urls]
 Home = "https://github.com/yamatt/homoglyphs"
