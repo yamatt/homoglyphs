@@ -7,7 +7,7 @@ on: push
 
 jobs:
   lint:
-    name: Run some linting
+    name: Linting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           rye run flake8 . --count --max-line-length=127 --statistics
   test:
-    name: Test the library
+    name: Test
     runs-on: ubuntu-latest
     needs: lint
     strategy:
