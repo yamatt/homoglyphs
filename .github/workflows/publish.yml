@@ -26,7 +26,4 @@ jobs:
       - name: Publish to PyPI
         run: |
           rye build
-          rye publish --yes
-        env:
-          FLIT_USERNAME: __token__
-          FLIT_PASSWORD: ${{ secrets.PYPI_API }}
+          rye publish --yes --token ${{ secrets.PYPI_API }}
