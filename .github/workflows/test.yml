@@ -10,6 +10,9 @@ on:
     paths:
       - homoglyphs_fork/**
       - .github/workflows/test.yml
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lint:
