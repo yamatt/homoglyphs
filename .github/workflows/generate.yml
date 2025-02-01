@@ -14,10 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: eifinger/setup-rye@v4
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
       - name: Generate confusables
         run: |
-          rye run generate
+          uv sync
+          uv run generate.py homoglyphs_fork/
       - name: Create Pull Request for changes
         uses: peter-evans/create-pull-request@v7
         with:
