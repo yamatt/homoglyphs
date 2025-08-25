@@ -13,7 +13,7 @@ jobs:
     name: Generate the confusables
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: eifinger/setup-rye@v4
       - name: Generate confusables
         run: |
