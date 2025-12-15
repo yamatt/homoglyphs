@@ -19,7 +19,7 @@ jobs:
         run: |
           rye run generate
       - name: Create Pull Request for changes
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "Latest confusables"
           title: "Latest confusables"
