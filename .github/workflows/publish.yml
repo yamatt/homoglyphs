@@ -13,7 +13,7 @@ jobs:
     name: Publish to PyPI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Install CA certs
         run: sudo apt-get install ca-certificates -y
       - name: Set up Python
