@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from collections import defaultdict
 import json
-from itertools import product
 import os
 import unicodedata
-
+from collections import defaultdict
+from itertools import product
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 

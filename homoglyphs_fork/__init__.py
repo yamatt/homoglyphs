@@ -13,11 +13,5 @@ __author__ = "Gram Orsinium"
 __license__ = "MIT"
 
 
-from .core import (  # noQA
-    Categories,
-    Languages,
-    Homoglyphs,
-    STRATEGY_LOAD,
-    STRATEGY_IGNORE,
-    STRATEGY_REMOVE,
-)
+from .core import STRATEGY_REMOVE  # noQA
+from .core import STRATEGY_IGNORE, STRATEGY_LOAD, Categories, Homoglyphs, Languages
