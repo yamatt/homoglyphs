@@ -9,9 +9,9 @@ import unicodedata
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Actions if char not in alphabet
-STRATEGY_LOAD = 1       # load category for this char
-STRATEGY_IGNORE = 2     # add char to result
-STRATEGY_REMOVE = 3     # remove char from result
+STRATEGY_LOAD = 1  # load category for this char
+STRATEGY_IGNORE = 2  # add char to result
+STRATEGY_REMOVE = 3  # remove char from result
 
 ASCII_RANGE = range(128)
 
@@ -21,7 +21,8 @@ class Categories:
     Work with aliases from ISO 15924.
     https://en.wikipedia.org/wiki/ISO_15924#List_of_codes
     """
-    fpath = os.path.join(CURRENT_DIR, 'categories.json')
+
+    fpath = os.path.join(CURRENT_DIR, "categories.json")
 
     @classmethod
     def _get_ranges(cls, categories):
@@ -33,10 +34,10 @@ class Categories:
             data = json.load(f)
 
         for category in categories:
-            if category not in data['aliases']:
-                raise ValueError('Invalid category: {}'.format(category))
+            if category not in data["aliases"]:
+                raise ValueError("Invalid category: {}".format(category))
 
-        for point in data['points']:
+        for point in data["points"]:
             if point[2] in categories:
                 yield point[:2]
 
@@ -68,12 +69,12 @@ class Categories:
             # unicodedata.name raises ValueError for non-unicode chars, TypeError on empty string
             pass
         else:
-            if category in data['aliases']:
+            if category in data["aliases"]:
                 return category
 
         # try detect category by ranges from JSON file.
         code = ord(char)
-        for point in data['points']:
+        for point in data["points"]:
             if point[0] <= code <= point[1]:
                 return point[2]
 
@@ -81,11 +82,11 @@ class Categories:
     def get_all(cls):
         with open(cls.fpath) as f:
             data = json.load(f)
-        return set(data['aliases'])
+        return set(data["aliases"])
 
 
 class Languages:
-    fpath = os.path.join(CURRENT_DIR, 'languages.json')
+    fpath = os.path.join(CURRENT_DIR, "languages.json")
 
     @classmethod
     def get_alphabet(cls, languages):
@@ -93,12 +94,12 @@ class Languages:
         :return: set of chars in alphabet by languages list
         :rtype: set
         """
-        with open(cls.fpath, encoding='utf-8') as f:
+        with open(cls.fpath, encoding="utf-8") as f:
             data = json.load(f)
         alphabet = set()
         for lang in languages:
             if lang not in data:
-                raise ValueError('Invalid language code: {}'.format(lang))
+                raise ValueError("Invalid language code: {}".format(lang))
             alphabet.update(data[lang])
         return alphabet
 
@@ -108,7 +109,7 @@ class Languages:
         :return: set of languages which alphabet contains passed char.
         :rtype: set
         """
-        with open(cls.fpath, encoding='utf-8') as f:
+        with open(cls.fpath, encoding="utf-8") as f:
             data = json.load(f)
         languages = set()
         for lang, alphabet in data.items():
@@ -118,29 +119,35 @@ class Languages:
 
     @classmethod
     def get_all(cls):
-        with open(cls.fpath, encoding='utf-8') as f:
+        with open(cls.fpath, encoding="utf-8") as f:
             data = json.load(f)
         return set(data.keys())
 
 
 class Homoglyphs:
-    def __init__(self, categories=None, languages=None, alphabet=None,
-                 strategy=STRATEGY_IGNORE, ascii_strategy=STRATEGY_REMOVE,
-                 ascii_range=ASCII_RANGE):
+    def __init__(
+        self,
+        categories=None,
+        languages=None,
+        alphabet=None,
+        strategy=STRATEGY_IGNORE,
+        ascii_strategy=STRATEGY_REMOVE,
+        ascii_range=ASCII_RANGE,
+    ):
         """
         :param ascii_strategy: action to take on unmatched char when converting to ascii
         :type ascii_strategy: int
         """
         # strategies
         if strategy not in (STRATEGY_LOAD, STRATEGY_IGNORE, STRATEGY_REMOVE):
-            raise ValueError('Invalid strategy')
+            raise ValueError("Invalid strategy")
         self.strategy = strategy
         self.ascii_strategy = ascii_strategy
         self.ascii_range = ascii_range
 
         # Homoglyphs must be initialized by any alphabet for correct work
         if not categories and not languages and not alphabet:
-            categories = ('LATIN', 'COMMON')
+            categories = ("LATIN", "COMMON")
 
         # cats and langs
         self.categories = set(categories or [])
@@ -159,7 +166,7 @@ class Homoglyphs:
     @staticmethod
     def get_table(alphabet):
         table = defaultdict(set)
-        with open(os.path.join(CURRENT_DIR, 'confusables.json')) as f:
+        with open(os.path.join(CURRENT_DIR, "confusables.json")) as f:
             data = json.load(f)
         for char in alphabet:
             if char in data:
@@ -222,7 +229,9 @@ class Homoglyphs:
             alt_chars = self._get_char_variants(char)
 
             if ascii:
-                alt_chars = [char for char in alt_chars if ord(char) in self.ascii_range]
+                alt_chars = [
+                    char for char in alt_chars if ord(char) in self.ascii_range
+                ]
                 if not alt_chars and self.ascii_strategy == STRATEGY_IGNORE:
                     alt_chars.append(char)
 
@@ -230,7 +239,7 @@ class Homoglyphs:
                 variations.append(alt_chars)
         if variations:
             for variant in product(*variations):
-                yield ''.join(variant)
+                yield "".join(variant)
 
     def get_combinations(self, text):
         return list(self._get_combinations(text))
@@ -240,4 +249,16 @@ class Homoglyphs:
             yield variant
 
     def to_ascii(self, text):
+        """
+        Convert a string containing Unicode homoglyphs (characters that look similar to ASCII characters but are actually different Unicode code points)
+        into a list of strings using only standard ASCII characters. This method replaces confusable or lookalike Unicode characters with their closest
+        ASCII equivalents, making the text more readable and less susceptible to spoofing or confusion. Useful for normalizing text for security,
+        comparison, or display purposes.
+
+        Args:
+            text (str): The input string potentially containing Unicode homoglyphs.
+
+        Returns:
+            List[str]: A list of possible ASCII-only representations of the input string.
+        """
         return self.uniq_and_sort(self._to_ascii(text))
