@@ -154,18 +154,40 @@ homoglyphs.to_ascii('хр123.')
 # ['xpl']
 ```
 
-## The Fork
 
-To help with the transition I have:
+The `to_ascii()` method converts a string containing Unicode homoglyphs (characters that look similar to ASCII characters but are actually different Unicode code points) into a list of strings using only standard ASCII characters. It replaces confusable or lookalike Unicode characters with their closest ASCII equivalents, making the text more readable and less susceptible to spoofing or confusion. This is useful for normalizing text for security, comparison, or display purposes.
 
--   Moved the `main` branch
--   Enabled Issues
+```python
+homoglyphs = hg.Homoglyphs(languages={'en'}, strategy=hg.STRATEGY_LOAD)
 
-I am looking to:
+# convert
+homoglyphs.to_ascii('\u0422\u0415\u0421\u0422')
+# ['TECT']
+homoglyphs.to_ascii('\u0425\u0420123.')  # this is cyrillic "\u0445" and "\u0440"
+# ['XP123.', 'XPI23.', 'XPl23.']
 
-## Contributors
+# string with chars which can't be converted by default will be ignored
+homoglyphs.to_ascii('\u043b\u043e\u043b')
+# []
 
-With thanks to:
+# you can set strategy for removing not converted non-ASCII chars from result
+homoglyphs = hg.Homoglyphs(
+    languages={'en'},
+    strategy=hg.STRATEGY_LOAD,
+    ascii_strategy=hg.STRATEGY_REMOVE,
+)
+homoglyphs.to_ascii('\u043b\u043e\u043b')
+# ['o']
 
--   @wesinator
--   @clydejallorina
+# also you can set up range of allowed char codes for ascii (0-128 by default):
+homoglyphs = hg.Homoglyphs(
+    languages={'en'},
+    strategy=hg.STRATEGY_LOAD,
+    ascii_strategy=hg.STRATEGY_REMOVE,
+    ascii_range=range(ord('a'), ord('z')),
+)
+homoglyphs.to_ascii('\u0425\u0420123.')
+# ['l']
+homoglyphs.to_ascii('\u0445\u0440123.')
+# ['xpl']
+```

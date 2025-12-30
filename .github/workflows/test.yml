@@ -1,7 +1,4 @@
-name: Test Homoglyphs
-
-env:
-  name: homoglyphs
+name: Test
 
 on:
   push:
@@ -20,14 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: eifinger/setup-rye@v4
-      - name: Lint
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - name: Set up Python
+        run: uv python install
+      - name: Run lint
         run: |
-          rye sync
-          # stop the build if there are Python syntax errors or undefined names
-          rye run lint
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          rye run flake8 . --count --max-line-length=127 --statistics
+          uv run black --check --diff homoglyphs_fork/
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -35,17 +31,19 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+          - "3.14"
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v6
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
+        uses: astral-sh/setup-uv@v7
+      - name: Set up Python
+        run: uv python install
       - name: Test
         run: |
-          python3 tests.py
+          uv run tests.py
