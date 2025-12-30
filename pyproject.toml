@@ -1,10 +1,9 @@
 [project]
 name = "homoglyphs_fork"
-version = "2.1.0"
 requires-python = ">=3.9"
-authors = [{name = "orsinium", email = "master_fess@mail.ru"}]
-maintainers = [{name = "Matt Copperwaite", email = "matt@copperwaite.net"}]
-license = {text = "MIT"}
+authors = [{ name = "orsinium", email = "master_fess@mail.ru" }]
+maintainers = [{ name = "Matt Copperwaite", email = "matt@copperwaite.net" }]
+license = { text = "MIT" }
 readme = "README.md"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -19,7 +18,10 @@ classifiers = [
     "Programming Language :: Python",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-dynamic = ["description"]
+dynamic = [
+    "description",
+    "version",
+] # Important: tells tools the version isn't static
 
 [project.urls]
 Home = "https://github.com/yamatt/homoglyphs"
@@ -29,10 +31,25 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [tool.uv]
-dev-dependencies = ["flake8>=7.0.0"]
+dev-dependencies = [
+    "bandit>=1.8.6",
+    "black>=25.11.0",
+    "flake8>=7.0.0",
+    "isort>=6.1.0",
+]
 
 [tool.dephell.main]
-from = {format = "flit", path = "pyproject.toml"}
-to = {format = "setuppy", path = "setup.py"}
+from = { format = "flit", path = "pyproject.toml" }
+to = { format = "setuppy", path = "setup.py" }
 
+[build-system]
+# Tell uv to use hatchling as the builder
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
+[tool.hatch.version]
+source = "vcs"             # VCS = Version Control System (Git)
+fallback-version = "0.0.0" # <--- Add this line
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version" # Ensures clean versions like 1.0.1

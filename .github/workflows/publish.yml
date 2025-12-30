@@ -1,4 +1,4 @@
-name: Publish Hemoglobin
+name: Publish
 
 on:
   push:
