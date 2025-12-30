@@ -1,0 +1,17 @@
+name: Auto-merge
+
+on: pull_request
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    dependabot:
+        runs-on: ubuntu-latest
+        if: github.event.pull_request.user.login == 'dependabot[bot]'
+        env:
+            GH_TOKEN: ${{ github.token }}
+        steps:
+            - name: Enable auto-merge for Dependabot PRs
+              run: gh pr merge --auto --merge "${{github.event.pull_request.html_url}}"
