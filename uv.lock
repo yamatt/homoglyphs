@@ -189,7 +189,6 @@ wheels = [
 
 [[package]]
 name = "homoglyphs-fork"
-version = "2.1.0"
 source = { editable = "." }
 
 [package.dev-dependencies]
