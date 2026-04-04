@@ -1,6 +1,6 @@
 [project]
 name = "homoglyphs_fork"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "orsinium", email = "master_fess@mail.ru" }]
 maintainers = [{ name = "Matt Copperwaite", email = "matt@copperwaite.net" }]
 license = { text = "MIT" }
@@ -9,7 +9,6 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -27,13 +26,8 @@ dynamic = [
 Home = "https://github.com/yamatt/homoglyphs"
 
 
-[tool.uv]
-dev-dependencies = [
-    "bandit>=1.8.6",
-    "black>=25.11.0",
-    "flake8>=7.0.0",
-    "isort>=6.1.0",
-]
+[dependency-groups]
+dev = ["bandit>=1.8.6", "black>=25.11.0", "flake8>=7.0.0", "isort>=6.1.0"]
 
 [tool.dephell.main]
 from = { format = "flit", path = "pyproject.toml" }
