@@ -26,13 +26,8 @@ dynamic = [
 Home = "https://github.com/yamatt/homoglyphs"
 
 
-[tool.uv]
-dev-dependencies = [
-    "bandit>=1.8.6",
-    "black>=25.11.0",
-    "flake8>=7.0.0",
-    "isort>=6.1.0",
-]
+[dependency-groups]
+dev = ["bandit>=1.8.6", "black>=25.11.0", "flake8>=7.0.0", "isort>=6.1.0"]
 
 [tool.dephell.main]
 from = { format = "flit", path = "pyproject.toml" }
