@@ -98,7 +98,6 @@ class Languages:
                 cls._languages_data = json.load(f)
         return cls._languages_data
 
-
     @classmethod
     def get_alphabet(cls, languages):
         """
