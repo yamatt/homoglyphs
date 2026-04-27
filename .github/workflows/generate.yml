@@ -20,7 +20,7 @@ jobs:
         run: uv python install
       - name: Generate confusables
         run: |
-          uv run generate.py homoglyphs_fork/
+          uv run generate homoglyphs_fork
       - name: Create Pull Request for changes
         uses: peter-evans/create-pull-request@v8
         with:
