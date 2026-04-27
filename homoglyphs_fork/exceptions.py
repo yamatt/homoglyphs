@@ -1,0 +1,2 @@
+class HomoglyphsException(Exception):
+    pass
