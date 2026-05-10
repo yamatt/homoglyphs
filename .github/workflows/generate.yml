@@ -4,14 +4,13 @@ on:
   schedule:
     - cron: "0 0 1 * *"
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   generate:
     name: Generate the confusables
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - name: Install uv
