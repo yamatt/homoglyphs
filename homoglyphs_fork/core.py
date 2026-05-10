@@ -22,6 +22,14 @@ class Categories:
     """
 
     fpath = os.path.join(CURRENT_DIR, "categories.json")
+    _categories_data = None
+
+    @classmethod
+    def get_categories_data(cls):
+        if cls._categories_data is None:
+            with open(cls.fpath, encoding="utf-8") as f:
+                cls._categories_data = json.load(f)
+        return cls._categories_data
 
     @classmethod
     def _get_ranges(cls, categories):
@@ -29,9 +37,7 @@ class Categories:
         :return: iter: (start code, end code)
         :rtype: list
         """
-        with open(cls.fpath) as f:
-            data = json.load(f)
-
+        data = cls.get_categories_data()
         for category in categories:
             if category not in data["aliases"]:
                 raise ValueError("Invalid category: {}".format(category))
@@ -58,9 +64,7 @@ class Categories:
         :return: category
         :rtype: str
         """
-        with open(cls.fpath) as f:
-            data = json.load(f)
-
+        data = cls.get_categories_data()
         # try detect category by unicodedata
         try:
             category = unicodedata.name(char).split()[0]
@@ -79,13 +83,20 @@ class Categories:
 
     @classmethod
     def get_all(cls):
-        with open(cls.fpath) as f:
-            data = json.load(f)
+        data = cls.get_categories_data()
         return set(data["aliases"])
 
 
 class Languages:
     fpath = os.path.join(CURRENT_DIR, "languages.json")
+    _languages_data = None
+
+    @classmethod
+    def get_languages_data(cls):
+        if cls._languages_data is None:
+            with open(cls.fpath, encoding="utf-8") as f:
+                cls._languages_data = json.load(f)
+        return cls._languages_data
 
     @classmethod
     def get_alphabet(cls, languages):
@@ -93,8 +104,7 @@ class Languages:
         :return: set of chars in alphabet by languages list
         :rtype: set
         """
-        with open(cls.fpath, encoding="utf-8") as f:
-            data = json.load(f)
+        data = cls.get_languages_data()
         alphabet = set()
         for lang in languages:
             if lang not in data:
@@ -108,8 +118,7 @@ class Languages:
         :return: set of languages which alphabet contains passed char.
         :rtype: set
         """
-        with open(cls.fpath, encoding="utf-8") as f:
-            data = json.load(f)
+        data = cls.get_languages_data()
         languages = set()
         for lang, alphabet in data.items():
             if char in alphabet:
@@ -118,12 +127,13 @@ class Languages:
 
     @classmethod
     def get_all(cls):
-        with open(cls.fpath, encoding="utf-8") as f:
-            data = json.load(f)
+        data = cls.get_languages_data()
         return set(data.keys())
 
 
 class Homoglyphs:
+    _confusables_data = None
+
     def __init__(
         self,
         categories=None,
@@ -162,11 +172,17 @@ class Homoglyphs:
             self.alphabet.update(alphabet)
         self.table = self.get_table(self.alphabet)
 
-    @staticmethod
-    def get_table(alphabet):
+    @classmethod
+    def get_confusables_data(cls):
+        if cls._confusables_data is None:
+            with open(os.path.join(CURRENT_DIR, "confusables.json")) as f:
+                cls._confusables_data = json.load(f)
+        return cls._confusables_data
+
+    @classmethod
+    def get_table(cls, alphabet):
         table = defaultdict(set)
-        with open(os.path.join(CURRENT_DIR, "confusables.json")) as f:
-            data = json.load(f)
+        data = cls.get_confusables_data()
         for char in alphabet:
             if char in data:
                 for homoglyph in data[char]:
