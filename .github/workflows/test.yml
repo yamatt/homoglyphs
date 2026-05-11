@@ -27,7 +27,7 @@ jobs:
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
       - name: Run lint
         run: |
-          uv run black --check --diff homoglyphs_fork/ tests.py
+          uv run black --check --diff homoglyphs_fork/ tests/
       - name: Run SAST
         run: |
           uv run bandit -r homoglyphs_fork/ tests/
