@@ -13,17 +13,12 @@ CIRILLIC_ES = "с"
 CIRILLIC_HE = "х"
 
 
-class TestCommon(unittest.TestCase):
+class TestCategories(unittest.TestCase):
     def test_detect_category(self):
         self.assertEqual(Categories.detect("d"), "LATIN")
         self.assertEqual(Categories.detect("Д"), "CYRILLIC")
         self.assertEqual(Categories.detect("?"), "COMMON")
         self.assertEqual(Categories.detect("ㅡ"), "HANGUL")
-
-    def test_detect_language(self):
-        self.assertIn("en", Languages.detect("d"))
-        self.assertIn("ru", Languages.detect("Д"))
-        self.assertEqual(Languages.detect("?"), set())
 
     def test_get_alphabet_cat(self):
         alphabet = Categories.get_alphabet(["LATIN"])
@@ -43,6 +38,23 @@ class TestCommon(unittest.TestCase):
         alphabet = Categories.get_alphabet(["HANGUL"])
         self.assertIn("ㅡ", alphabet)
 
+    def test_get_table(self):
+        alphabet = Categories.get_alphabet(["LATIN"])
+        table = Homoglyphs.get_table(alphabet)
+        self.assertIn("s", table)
+        self.assertNotIn(CIRILLIC_ES, table)
+
+        alphabet = Categories.get_alphabet(["HANGUL", "COMMON"])
+        table = Homoglyphs.get_table(alphabet)
+        self.assertGreater(len(table["ㅡ"]), 0)
+
+
+class TestLanguages(unittest.TestCase):
+    def test_detect_language(self):
+        self.assertIn("en", Languages.detect("d"))
+        self.assertIn("ru", Languages.detect("Д"))
+        self.assertEqual(Languages.detect("?"), set())
+
     def test_get_alphabet_lang(self):
         alphabet = Languages.get_alphabet({"en"})
         self.assertIn("s", alphabet)
@@ -56,15 +68,8 @@ class TestCommon(unittest.TestCase):
         self.assertNotIn("s", alphabet)
         self.assertEqual(len(alphabet), 33 * 2)
 
-    def test_get_table(self):
-        alphabet = Categories.get_alphabet(["LATIN"])
-        table = Homoglyphs.get_table(alphabet)
-        self.assertIn("s", table)
-        self.assertNotIn(CIRILLIC_ES, table)
 
-        alphabet = Categories.get_alphabet(["HANGUL", "COMMON"])
-        table = Homoglyphs.get_table(alphabet)
-        self.assertGreater(len(table["ㅡ"]), 0)
+class TestHomoglyphs(unittest.TestCase):
 
     def test_get_char_variants(self):
         variants = Homoglyphs(["LATIN"])._get_char_variants("s")
