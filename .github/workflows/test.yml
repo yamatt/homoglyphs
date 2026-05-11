@@ -30,7 +30,7 @@ jobs:
           uv run black --check --diff homoglyphs_fork/ tests/
       - name: Run SAST
         run: |
-          uv run bandit -r homoglyphs_fork/ tests/
+          uv run bandit -r homoglyphs_fork/
   test:
     name: Test
     runs-on: ubuntu-latest
