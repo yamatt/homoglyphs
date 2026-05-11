@@ -118,6 +118,7 @@ dev = [
     { name = "black" },
     { name = "flake8" },
     { name = "pygal" },
+    { name = "pytest" },
     { name = "pytest-benchmark" },
 ]
 
@@ -129,6 +130,7 @@ dev = [
     { name = "black", specifier = ">=25.11.0" },
     { name = "flake8", specifier = ">=7.0.0" },
     { name = "pygal", specifier = ">=3.1.0" },
+    { name = "pytest", specifier = ">=7.0.0" },
     { name = "pytest-benchmark", specifier = ">=5.2.3" },
 ]
 
