@@ -36,10 +36,10 @@ jobs:
       - name: Get Baseline Benchmark
         working-directory: main
         run: |
-          uv sync
+          uv sync --group dev
           uv run pytest tests/test_benchmarks.py --benchmark-min-rounds=100 --benchmark-json=../baseline.json
       - name: Compare with PR Benchmark
         working-directory: ${{ github.event.pull_request.head.sha }}
         run: |
-          uv sync
+          uv sync --group dev
           uv run pytest tests/test_benchmarks.py --benchmark-min-rounds=100 --benchmark-compare=../baseline.json --benchmark-compare-fail=mean:20%
