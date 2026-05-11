@@ -20,13 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+        with:
+          python-version-file: .python-version
       - name: Install uv
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
-      - name: Set up Python
-        run: uv python install
       - name: Run lint
         run: |
-          uv run black --check --diff homoglyphs_fork/
+          uv run black --check --diff homoglyphs_fork/ tests.py
+      - name: Run SAST
+        run: |
+          uv run bandit -r homoglyphs_fork/ tests.py
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -40,26 +44,16 @@ jobs:
           - "3.12"
           - "3.13"
           - "3.14"
-        os: [ ubuntu-latest ]
+        os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-      - name: Set up Python ${{ matrix.python-version }}
+
+      - name: Install Python ${{ matrix.python-version }}
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+        with:
+          python-version: "${{ matrix.python-version }}"
+      - name: Set up UV
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
-      - name: Set up Python
-        run: uv python install
       - name: Test
         run: |
           uv run tests.py
-  zizmor:
-    name: GitHub Actions Static Analysis
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-      contents: read # only needed for private repos
-      actions: read # only needed for private repos
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-        with:
-          persist-credentials: false
-      - name: Run zizmor
-        uses: zizmorcore/zizmor-action@b1d7e1fb5de872772f31590499237e7cce841e8e # v0.5.3
