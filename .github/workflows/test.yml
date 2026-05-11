@@ -29,6 +29,9 @@ jobs:
       - name: Run lint
         run: |
           uv run black --check --diff homoglyphs_fork/ tests.py
+      - name: Run SAST
+        run: |
+          uv run bandit -r homoglyphs_fork/ tests.py
   test:
     name: Test
     runs-on: ubuntu-latest
