@@ -25,7 +25,7 @@ def generate_categories():
     # inspired by https://gist.github.com/anonymous/2204527
     rex = re.compile(r'([0-9A-F]+)(?:\.\.([0-9A-F]+))?\W+(\w+)\s*#\s*\w+', re.UNICODE)
 
-    url = 'ftp://ftp.unicode.org/Public/UNIDATA/Scripts.txt'
+    url = 'https://www.unicode.org/Public/UNIDATA/Scripts.txt'
     content = urlopen(url).read().decode('utf-8').split('\n')
 
     points = []
@@ -51,7 +51,7 @@ def generate_categories():
 def generate_confusables():
     """Generates the confusables JSON data file from the unicode specification.
     """
-    url = 'ftp://ftp.unicode.org/Public/security/latest/confusables.txt'
+    url = 'https://www.unicode.org/Public/security/latest/confusables.txt'
     file = urlopen(url).read().decode('utf-8').split('\n')
     confusables_matrix = defaultdict(set)
     rex = re.compile(
