@@ -21,7 +21,7 @@ updates:
         patterns: ["*"]
         update-types: ["minor", "patch"]
     labels:
-      - dependabot
+      - dependency
       - github-actions
 
   - package-ecosystem: "github-actions" # See documentation for possible values
@@ -37,5 +37,5 @@ updates:
         patterns: ["*"]
         update-types: ["minor", "patch"]
     labels:
-      - dependabot
+      - dependency
       - github-actions
