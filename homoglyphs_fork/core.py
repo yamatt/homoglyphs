@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import json
 import os
 import unicodedata
@@ -40,7 +39,7 @@ class Categories:
         data = cls.get_categories_data()
         for category in categories:
             if category not in data["aliases"]:
-                raise ValueError("Invalid category: {}".format(category))
+                raise ValueError(f"Invalid category: {category}")
 
         for point in data["points"]:
             if point[2] in categories:
@@ -108,7 +107,7 @@ class Languages:
         alphabet = set()
         for lang in languages:
             if lang not in data:
-                raise ValueError("Invalid language code: {}".format(lang))
+                raise ValueError(f"Invalid language code: {lang}")
             alphabet.update(data[lang])
         return alphabet
 
@@ -260,8 +259,7 @@ class Homoglyphs:
         return list(self._get_combinations(text))
 
     def _to_ascii(self, text):
-        for variant in self._get_combinations(text, ascii=True):
-            yield variant
+        yield from self._get_combinations(text, ascii=True)
 
     def to_ascii(self, text):
         """

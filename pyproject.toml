@@ -34,6 +34,7 @@ dev = [
     "pytest>=7.0.0",
     "pytest-benchmark>=5.2.3",
     "pygal>=3.1.0",
+    "ruff>=0.17.4",
 ]
 
 [tool.dephell.main]
