@@ -4,12 +4,12 @@ https://github.com/vhf/confusable_homoglyphs/blob/master/confusable_homoglyphs/c
 """
 
 
-import re
-from collections import defaultdict
-from urllib.request import urlopen
 import json
-from pathlib import Path
+import re
 import sys
+from collections import defaultdict
+from pathlib import Path
+from urllib.request import urlopen
 
 try:
     homoglyphs_dir = sys.argv[1]

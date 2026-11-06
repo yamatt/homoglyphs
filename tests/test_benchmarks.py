@@ -1,12 +1,12 @@
 import pytest
 
 from homoglyphs_fork import (
-    Categories,
-    Languages,
-    Homoglyphs,
-    STRATEGY_LOAD,
     STRATEGY_IGNORE,
+    STRATEGY_LOAD,
     STRATEGY_REMOVE,
+    Categories,
+    Homoglyphs,
+    Languages,
 )
 
 
